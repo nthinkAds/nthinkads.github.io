@@ -306,24 +306,23 @@
     location.href = 'mailto:info@nthink.lk?subject=' + encodeURIComponent('New project enquiry from ' + name) + '&body=' + encodeURIComponent(body);
   });
 
-  /* ---------- Custom cursor: registration mark that tilts as it moves, red bubble over the work ---------- */
+  /* ---------- Custom cursor: red dot + trailing ring, "View"/"Play" bubble over the work ---------- */
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {   // real mouse only; phones keep normal touch
-    var cur = $('.cursor'), mark = $('.cursor-mark'), bubble = $('.cursor-bubble'), label = $('.cursor-label');
+    var cur = $('.cursor'), dot = $('.cursor-dot'), ring = $('.cursor-ring'), label = $('.cursor-label');
     root.classList.add('has-cursor');
-    var mx = -100, my = -100, fx = mx, fy = my, tilt = 0, lastX = mx;
-    addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; cur.classList.remove('is-away'); }, { passive: true });
-    (function loop() {
-      // the mark tilts a little in the direction of travel, then settles back
-      var vx = mx - lastX; lastX = mx;
-      tilt += ((reduceMotion ? 0 : Math.max(-25, Math.min(25, vx * 1.5))) - tilt) * 0.15;
-      mark.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0) rotate(' + tilt.toFixed(1) + 'deg)';
-      // the bubble follows with a soft lag
-      var k = reduceMotion ? 1 : 0.25;
-      fx += (mx - fx) * k; fy += (my - fy) * k;
-      bubble.style.transform = 'translate3d(' + fx + 'px,' + fy + 'px,0)';
+    var mx = -100, my = -100, rx = mx, ry = my;
+    var ease = reduceMotion ? 1 : 0.2;             // how quickly the ring catches up (1 = no trailing)
+    addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+      cur.classList.remove('is-away');
+    }, { passive: true });
+    (function loop() {                              // the ring glides after the dot
+      rx += (mx - rx) * ease; ry += (my - ry) * ease;
+      ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
       requestAnimationFrame(loop);
     })();
-    // Pick the cursor style from what's under the mouse
+    // Decide the cursor style from what's under the mouse
     document.addEventListener('mouseover', function (e) {
       var t = e.target;
       var work = t.closest('.fcard, .tile');
