@@ -20,17 +20,17 @@ window.FIGURES = [
   ['14', 'iconic brands and collaborations']
 ];
 
-// The five disciplines, each with a short description and tags
+// The five disciplines: picture, short description and tags
 window.DISCIPLINES = [
-  { name: 'Brand identity', text: 'Strategy first, then the marks, type and systems that let a brand stay recognisable everywhere it shows up.',
+  { name: 'Brand identity', img: 'assets/work/identities/02.webp', text: 'Strategy first, then the marks, type and systems that let a brand stay recognisable everywhere it shows up.',
     tags: ['Brand strategy', 'Visual identity', 'Typography', 'Guidelines', 'Design systems'] },
-  { name: 'Promotional design', text: 'Campaign key visuals and everything that carries them: magazine pages, hoardings, pennants, pull-ups and brochures.',
+  { name: 'Promotional design', img: 'assets/work/maggi-pro-posm/08.webp', text: 'Campaign key visuals and everything that carries them: magazine pages, hoardings, pennants, pull-ups and brochures.',
     tags: ['Campaign design', 'Editorial print', 'Outdoor', 'Brochures', 'Key visuals'] },
-  { name: 'Packaging', text: 'Packs that win the two seconds a shopper gives a shelf, built to print cleanly at scale.',
+  { name: 'Packaging', img: 'assets/work/rushi-salt/02.webp', text: 'Packs that win the two seconds a shopper gives a shelf, built to print cleanly at scale.',
     tags: ['Structural packaging', 'Luxury labels', 'Consumer packs', 'Unboxing'] },
-  { name: 'Creative content', text: 'Social campaigns, motion and art direction that keep a brand talking between launches.',
+  { name: 'Creative content', img: 'assets/work/pepper-cube-social/02.webp', text: 'Social campaigns, motion and art direction that keep a brand talking between launches.',
     tags: ['Digital content', 'Social campaigns', 'Art direction', 'Storytelling', 'Motion'] },
-  { name: 'Photography and videography', text: 'Food, product and people, shot and graded in-house so the film matches the print.',
+  { name: 'Photography and videography', img: 'assets/video/nestea.jpg', text: 'Food, product and people, shot and graded in-house so the film matches the print.',
     tags: ['Cinematography', 'Commercial photography', 'Direction', '35mm stills', 'Colour grading'] }
 ];
 

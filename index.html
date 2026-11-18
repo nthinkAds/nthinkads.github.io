@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>N Think — Ideas that make brands impossible to ignore</title>
   <meta name="description" content="N Think is a boutique integrated creative agency in Colombo, Sri Lanka: brand identity, promotional design, packaging, creative content, photography and videography.">
-  <meta name="theme-color" content="#EDEEF0" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0C0C0E">
   <!-- Social share preview -->
-  <meta property="og:title" content="N Think — Creative studio, Colombo">
+  <meta property="og:title" content="N Think — Creative agency, Colombo">
   <meta property="og:description" content="Ideas that make brands impossible to ignore.">
-  <meta property="og:image" content="assets/work/kevilton-nature/01.webp">
+  <meta property="og:image" content="assets/work/np-stall/01.webp">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-  <!-- Set the theme BEFORE the page paints, so there is no white flash in dark mode -->
+  <!-- Pick the theme before the page paints: saved choice first, otherwise follow the device -->
   <script>
     (function () {
       var saved = null;
@@ -26,157 +25,209 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Archivo (wide, heavy) for headlines, Fraunces italic for accent words, Hanken Grotesk for body text -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Fraunces:ital,opsz,wght@1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <a class="skip" href="#work">Skip to the work</a>
   <div class="progress" aria-hidden="true"></div>
 
-  <!-- ============ Fixed header ============ -->
-  <header class="nav" id="top">
-    <a class="wordmark" href="#hero" aria-label="N Think, back to top">
-      <span class="wordmark-n">N</span><span class="wordmark-think">Think</span>
+  <!-- ============ Navigation: three glass pills ============ -->
+  <header class="nav">
+    <a class="pill nav-logo" href="#hero" aria-label="N Think, back to top">
+      <span class="logo-n">N</span><span class="logo-think">Think</span>
     </a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#work" data-nav>Work</a>
-      <a href="#disciplines" data-nav>Disciplines</a>
-      <a href="#studio" data-nav>Studio</a>
-      <a href="#contact" data-nav>Contact</a>
-    </nav>
-    <div class="nav-tools">
-      <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
-        <!-- Half-filled circle: the filled half flips with the theme -->
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path class="tt-fill" d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+    <div class="pill nav-clock" aria-label="Local time in Colombo"><span class="dot">●</span> Colombo <span id="clock">--:--</span></div>
+    <div class="pill nav-right">
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#featured" data-nav>Work</a>
+        <a href="#disciplines" data-nav>Disciplines</a>
+        <a href="#studio" data-nav>Studio</a>
+        <a href="#contact" data-nav>Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode">
+        <!-- Half-filled circle; the filled half flips with the theme -->
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path class="tt-fill" d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
       </button>
-      <a class="btn btn-small" href="#contact">Start a conversation</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </header>
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#work">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+    <a href="#featured">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
   </div>
 
   <main>
-    <!-- ============ 01 Hero ============ -->
+    <!-- ============ Hero: full-bleed image, content in the container ============ -->
     <section class="hero" id="hero">
-      <p class="hero-place"><span class="sec-no">01</span> Boutique creative studio, Colombo</p>
-      <h1 class="hero-title" aria-label="Ideas that make brands impossible to ignore.">
-        <span class="line"><span>Ideas that make</span></span>
-        <span class="line"><span>brands impossible</span></span>
-        <span class="line"><span>to ignore.</span></span>
-      </h1>
-      <div class="hero-foot">
-        <p class="hero-text">An integrated agency for brand, content, digital and visual work. Fifteen years of making FMCG, food and beverage, industrial and broadcast brands look like themselves, only louder.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#work">See the work</a>
-          <a class="btn btn-ghost" href="#contact">Start a conversation</a>
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-drift"><img src="assets/work/np-stall/01.webp" alt=""></div>
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-meta"><span>( Colombo <span class="dot">/</span> Sri Lanka )</span><span>Boutique integrated agency</span></div>
+        <h1 class="hero-head" aria-label="Ideas that make brands impossible to ignore.">
+          <span class="line"><span>Ideas that make</span></span>
+          <span class="line indent"><span>brands <em class="serif">impossible</em></span></span>
+          <span class="line"><span class="outline">to ignore.</span></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-desc"><strong>Brand ✦ Content ✦ Digital ✦ Visual.</strong> Fifteen years making FMCG, food and beverage, industrial and broadcast brands look like themselves, only louder.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-accent" href="#featured"><span>View the work</span></a>
+            <a class="btn btn-ghost" href="#contact"><span>Start a conversation</span></a>
+          </div>
         </div>
       </div>
+      <a class="scroll-cue" href="#manifesto" aria-label="Scroll to discover"><span></span></a>
     </section>
 
-    <!-- ============ 02 Clients ============ -->
-    <section class="clients" aria-label="Clients and collaborations">
-      <div class="marquee"><div class="marquee-track" id="clientTrack"></div></div>
+    <!-- ============ Client marquee ============ -->
+    <section class="marquee" aria-label="Clients and collaborations">
+      <div class="marquee-track" id="clientTrack"></div>
     </section>
 
-    <!-- ============ 03 Manifesto ============ -->
-    <section class="manifesto" id="manifesto">
-      <p class="sec-head"><span class="sec-no">03</span> How we work</p>
-      <p class="manifesto-text" id="manifestoText">We are small on purpose. Every brief gets the people who pitched it, from the first sketch to the last proof on press. Strategy, craft and technology sit at one table, so the idea you approve is the idea that ends up on the shelf, the hoarding and the screen.</p>
-    </section>
-
-    <!-- ============ 04 Work ============ -->
-    <section class="work" id="work">
-      <div class="sec-row">
-        <p class="sec-head"><span class="sec-no">04</span> Selected work</p>
-        <p class="sec-note">Real projects for Nestlé Professional, Kevilton, MAGGI, NESCAFÉ and more. Select any piece to see the full set. More films on <a class="yt-link" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">our YouTube channel</a>.</p>
+    <!-- ============ Manifesto ============ -->
+    <section class="section" id="manifesto">
+      <div class="wrap">
+        <div class="label-row"><span>( Who we are )</span><span>Think ✦ Make</span></div>
+        <p class="statement" id="manifestoText">We are small on purpose. Every brief gets the people who pitched it, from first sketch to last proof on press. Strategy, craft and technology sit at <em class="serif">one table</em>, so the idea you approve is the idea that ends up on the shelf, the hoarding and the screen.</p>
       </div>
-      <div class="featured" id="featured"></div>
+    </section>
 
-      <div class="archive">
-        <div class="archive-head">
-          <h2 class="archive-title">Everything else</h2>
-          <div class="filters" role="toolbar" aria-label="Filter work by category" id="filters"></div>
+    <!-- ============ Featured projects ============ -->
+    <section class="section" id="featured">
+      <div class="wrap">
+        <div class="label-row"><span>( 01 — 03 )</span><span>Featured projects</span></div>
+        <h2 class="sec-title">Work we're <em class="serif">proud</em> of</h2>
+        <div class="featured-list" id="featuredList"></div>
+      </div>
+    </section>
+
+    <!-- ============ Disciplines: cards in a row, moved with the arrow buttons ============ -->
+    <section class="section" id="disciplines">
+      <div class="wrap">
+        <div class="label-row"><span>( 01 — 05 )</span><span id="discCount">01 / 05</span></div>
+        <div class="h-head">
+          <h2 class="sec-title">Five ways we <em class="serif">help</em></h2>
+          <div class="h-progress" aria-hidden="true"><span id="discBar"></span></div>
         </div>
-        <div class="grid" id="grid" aria-live="polite"></div>
+      </div>
+      <div class="hviewport">
+        <button class="harrow prev" type="button" aria-label="Previous discipline" aria-controls="discStack">←</button>
+        <div class="htrack" id="discStack" tabindex="-1"></div>
+        <button class="harrow next" type="button" aria-label="Next discipline" aria-controls="discStack">→</button>
       </div>
     </section>
 
-    <!-- ============ 05 Disciplines ============ -->
-    <section class="disciplines" id="disciplines">
-      <p class="sec-head"><span class="sec-no">05</span> Five disciplines</p>
-      <div class="disc-list" id="discList"></div>
-    </section>
-
-    <!-- ============ 06 Studio ============ -->
-    <section class="studio" id="studio">
-      <p class="sec-head"><span class="sec-no">06</span> The studio</p>
-      <div class="studio-grid">
-        <p class="studio-text">N Think brings creative services, technical innovation and digital marketing under one roof. We work as a full-service partner, so the whole brand experience is handled by one team that knows it end to end.</p>
-        <dl class="figures" id="figures"></dl>
-      </div>
-      <article class="director crop">
-        <div class="director-mark" aria-hidden="true">NP</div>
-        <div class="director-body">
-          <h3>Niraj Peiris</h3>
-          <p class="director-role">Managing Director and Head of Creative</p>
-          <p>Over fifteen years in advertising across FMCG, telecommunications, banking, finance and social enterprise. Niraj pairs artistic instinct with strategic thinking, and leads concept development and creative direction for integrated campaigns across print, TV, radio, digital and outdoor.</p>
-          <ul class="tags"><li>FMCG and telco</li><li>360° integrated</li><li>Strategic instinct</li></ul>
+    <!-- ============ Selected work: filterable masonry ============ -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="label-row"><span>( Archive )</span><span id="workCount">Selected work</span></div>
+        <div class="work-head">
+          <h2 class="sec-title">Selected <em class="serif">work</em></h2>
+          <p class="work-note">Real projects for Nestlé Professional, Kevilton, MAGGI, NESCAFÉ and more. Films too, with more on <a class="text-link" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">our YouTube channel</a>.</p>
         </div>
-      </article>
+        <div class="filters" role="toolbar" aria-label="Filter work by category" id="filters"></div>
+        <div class="masonry-wrap" id="masonryWrap">
+          <div class="masonry" id="grid" aria-live="polite"></div>
+        </div>
+        <div class="expand-row"><button class="btn btn-ghost" type="button" id="expandBtn"><span>Expand full gallery ↓</span></button></div>
+      </div>
     </section>
 
-    <!-- ============ 07 Contact ============ -->
+    <!-- ============ Studio: inverted colour band ============ -->
+    <section class="section invert" id="studio">
+      <div class="wrap">
+        <div class="label-row"><span>( The studio )</span><span>Colombo ✦ 15+ years</span></div>
+        <div class="about-grid">
+          <p class="about-state">Creative services, technical <em class="serif">innovation</em> and digital marketing under one roof.</p>
+          <div>
+            <p class="about-copy">N Think works as a full-service partner, so the whole brand experience is handled by one team that knows it end to end: from the identity to the shelf, the hoarding, the feed and the film.</p>
+            <dl class="stats" id="figures"></dl>
+          </div>
+        </div>
+
+        <article class="leader">
+          <div class="leader-mark" aria-hidden="true">NP</div>
+          <div class="leader-body">
+            <div class="label-row"><span>( Leadership )</span><span>15+ years</span></div>
+            <h3>Niraj Peiris</h3>
+            <p class="leader-role">Managing Director ✦ Head of Creative</p>
+            <p>Over fifteen years in advertising across FMCG, telecommunications, banking, finance and social enterprise. Niraj pairs artistic instinct with strategic thinking, and leads concept development and creative direction for integrated campaigns across print, TV, radio, digital and outdoor.</p>
+            <ul class="tags"><li>FMCG and telco</li><li>360° integrated</li><li>Strategic instinct</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ Contact + footer ============ -->
     <section class="contact" id="contact">
-      <p class="sec-head"><span class="sec-no">07</span> Contact</p>
-      <h2 class="contact-title">Let's create.</h2>
-      <div class="contact-grid">
-        <ul class="contact-lines">
-          <li><span>Studio</span><a href="mailto:info@nthink.lk">info@nthink.lk</a></li>
-          <li><span>Managing Director</span><a href="mailto:niraj@nthink.lk">niraj@nthink.lk</a></li>
-          <li><span>Phone</span><a href="tel:+94765376180">+94 76 537 6180</a></li>
-          <li><span>WhatsApp</span><a href="https://wa.me/94765376180" target="_blank" rel="noopener">Message us on WhatsApp</a></li>
-          <li><span>YouTube</span><a href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">@nthinklk</a></li>
-          <li><span>Address</span><address>Colombo, Sri Lanka</address></li>
-        </ul>
+      <div class="contact-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="label-row"><span>( Contact )</span><span>Let's talk</span></div>
+        <h2 class="contact-head">Let's <em class="serif">create.</em></h2>
 
-        <!-- Static site: the form writes an email in the visitor's mail app. Swap for Supabase later. -->
-        <form class="form" id="contactForm" novalidate>
-          <label>Your name<input name="name" autocomplete="name" required></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required></label>
-          <label>Company<input name="company" autocomplete="organization"></label>
-          <label>What do you need?<textarea name="message" rows="5" required></textarea></label>
-          <p class="form-error" id="formError" role="alert" hidden></p>
-          <button class="btn" type="submit">Write the email</button>
-          <p class="form-note">This opens your email app with the message ready to send to info@nthink.lk.</p>
-        </form>
+        <div class="contact-grid">
+          <div class="contact-cards">
+            <a class="ccard" href="mailto:info@nthink.lk"><span>Studio</span>info@nthink.lk</a>
+            <a class="ccard" href="mailto:niraj@nthink.lk"><span>Managing Director</span>niraj@nthink.lk</a>
+            <a class="ccard" href="tel:+94765376180"><span>Phone</span>+94 76 537 6180</a>
+            <a class="ccard" href="https://wa.me/94765376180" target="_blank" rel="noopener"><span>WhatsApp</span>Message us</a>
+            <a class="ccard" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener"><span>YouTube</span>@nthinklk</a>
+            <div class="ccard"><span>Address</span>Colombo, Sri Lanka</div>
+          </div>
+
+          <!-- Static site: the form writes an email in the visitor's mail app -->
+          <form class="form" id="contactForm" novalidate>
+            <div class="form-row">
+              <label>Your name<input name="name" autocomplete="name" required></label>
+              <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            </div>
+            <label>Company<input name="company" autocomplete="organization"></label>
+            <label>What do you need?<textarea name="message" rows="4" required></textarea></label>
+            <p class="form-error" id="formError" role="alert" hidden></p>
+            <div class="form-foot">
+              <button class="btn btn-accent" type="submit"><span>Write the email</span></button>
+              <p class="form-note">Opens your email app with the message ready for info@nthink.lk.</p>
+            </div>
+          </form>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-cols">
+            <div>
+              <a class="logo-big" href="#hero"><span class="logo-n">N</span><span class="logo-think">Think</span></a>
+              <p class="footer-tagline">Made to be remembered.</p>
+              <p class="footer-blurb">A boutique integrated creative agency in Colombo: brand identity, promotional design, packaging, creative content, photography and videography.</p>
+            </div>
+            <div>
+              <p class="foot-label">( Navigate )</p>
+              <ul class="foot-list"><li><a href="#featured">Work</a></li><li><a href="#disciplines">Disciplines</a></li><li><a href="#studio">Studio</a></li><li><a href="#contact">Contact</a></li></ul>
+            </div>
+            <div>
+              <p class="foot-label">( Direct )</p>
+              <ul class="foot-list"><li><a href="mailto:info@nthink.lk">info@nthink.lk</a></li><li><a href="tel:+94765376180">+94 76 537 6180</a></li><li><a href="https://wa.me/94765376180" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">YouTube</a></li></ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© <span id="year">2026</span> N Think. All rights reserved.</p>
+            <a href="#hero">Back to top ↑</a>
+          </div>
+        </footer>
       </div>
     </section>
   </main>
-
-  <!-- ============ Footer ============ -->
-  <footer class="footer">
-    <div class="footer-big" aria-hidden="true">N Think</div>
-    <div class="footer-row">
-      <nav aria-label="Footer"><a href="#work">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a><a href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">YouTube</a></nav>
-      <p>Colombo, Sri Lanka</p>
-      <p>Made to be remembered.</p>
-      <p>© <span id="year">2026</span> N Think</p>
-      <a href="#hero" class="to-top">Back to top</a>
-    </div>
-  </footer>
 
   <!-- ============ Project viewer (lightbox) ============ -->
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
     <div class="viewer-bar">
       <div><p class="viewer-client" id="viewerClient"></p><h2 id="viewerTitle"></h2></div>
       <p class="viewer-count" id="viewerCount"></p>
-      <button class="viewer-close" type="button" aria-label="Close viewer">Close</button>
+      <button class="viewer-close" type="button" aria-label="Close viewer">✕</button>
     </div>
     <div class="viewer-stage" id="viewerStage"></div>
-    <button class="viewer-nav prev" type="button" aria-label="Previous image">‹</button>
-    <button class="viewer-nav next" type="button" aria-label="Next image">›</button>
+    <button class="viewer-nav prev" type="button" aria-label="Previous image">←</button>
+    <button class="viewer-nav next" type="button" aria-label="Next image">→</button>
     <div class="viewer-thumbs" id="viewerThumbs"></div>
   </div>
 
