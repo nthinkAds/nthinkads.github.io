@@ -24,7 +24,7 @@ window.CLIENTS = [
 
 // Key figures for the Studio section (value + what it means)
 window.FIGURES = [
-  ["15+", "years of industry leadership"],
+  ["18+", "years of industry leadership"],
   ["360°", "integrated creative solutions"],
   ["100%", "boutique focus and attention"],
   ["07", "core services"],
@@ -89,10 +89,10 @@ window.DISCIPLINES = [
 
 // Team row in the Studio section. Leave name empty ('') to show the role only.
 window.TEAM = [
+  { name: "Dishen", role: "Live streaming and video production", img: "assets/team/dishen.webp" },
   { name: "", role: "IT and digital", img: "assets/team/it.webp" },
   { name: "", role: "Interior design", img: "assets/team/interior.webp" },
   { name: "", role: "Marketing", img: "assets/team/team-4.webp" },
-  { name: "", role: "Video production", img: "assets/team/video.webp" },
 ];
 
 // Logos section: brand marks N Think designed (img: trimmed logo; index: its image in the 'identities' project viewer)
@@ -271,6 +271,28 @@ window.PROJECTS = [
       [1368, 1600],
     ]),
   },
+  // Nestlé Distribution Center office: 10 renders, a floor plan and a furniture drawing from the design pack
+  {
+    id: "nestle-office-pack",
+    cat: "interior",
+    client: "Nestlé",
+    title: "Distribution Center office",
+    text: "A full office design pack: reception, boardroom, open-plan desks, green-wall lounges and a training room, with floor plans and drawings for every custom piece of furniture.",
+    media: imgs("nestle-office-pack", [
+      [1600, 900],
+      [1359, 1600],
+      [1600, 900],
+      [1359, 1600],
+      [1600, 900],
+      [1359, 1600],
+      [1600, 900],
+      [1358, 1600],
+      [1358, 1600],
+      [1600, 900],
+      [1600, 1129],
+      [1600, 1129],
+    ]),
+  },
   {
     id: "kevilton-electrical",
     cat: "promo",
@@ -281,6 +303,20 @@ window.PROJECTS = [
       [800, 1600],
       [800, 1600],
       [800, 1600],
+    ]),
+  },
+  // Kevilton Avurudu 2025: greeting card (outside, inside) and nakath cards in Sinhala and Tamil
+  {
+    id: "kevilton-avurudu",
+    cat: "print",
+    client: "Kevilton",
+    title: "Avurudu 2025 greeting card",
+    text: "A Sinhala and Tamil New Year greeting card, with matching auspicious-times cards in both languages, illustrated around the sun and a traditional welcome.",
+    media: imgs("kevilton-avurudu", [
+      [1600, 565],
+      [1600, 565],
+      [697, 993],
+      [698, 993],
     ]),
   },
   {
