@@ -43,7 +43,7 @@ window.DISCIPLINES = [
 window.TEAM = [
   { name: '', role: 'IT and digital', img: 'assets/team/it.webp' },
   { name: '', role: 'Interior design', img: 'assets/team/interior.webp' },
-  { name: '', role: 'Creative team', img: 'assets/team/team-4.webp' }
+  { name: '', role: 'Marketing', img: 'assets/team/team-4.webp' }
 ];
 
 // Logos section: brand marks N Think designed (img: trimmed logo; index: its image in the 'identities' project viewer)
