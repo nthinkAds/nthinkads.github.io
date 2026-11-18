@@ -9,6 +9,23 @@
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Fully stop a film and cancel its download (pausing alone keeps it downloading in the background)
+  function unloadVideo(v) { if (!v) return; v.pause(); v.removeAttribute('src'); v.load(); if (v.parentNode) v.parentNode.removeChild(v); }
+  // If a film freezes while playing, nudge it the way a manual pause and play would
+  function watchStalls(v) {
+    var timer = null;
+    function check() {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (!v.isConnected || v.paused || v.readyState >= 3) return;
+        var t = v.currentTime;                       // still stuck after 2.5 s: reload from the same spot
+        v.load(); v.currentTime = t; v.play().catch(function () {});
+      }, 2500);
+    }
+    v.addEventListener('waiting', check);
+    v.addEventListener('stalled', check);
+    v.addEventListener('playing', function () { clearTimeout(timer); });
+  }
   var root = document.documentElement;
   root.classList.add('js'); // lets CSS hide things that JS animates in
 
@@ -174,16 +191,21 @@
     setExpanded(f !== 'all');
   });
 
-  // Films preview silently on hover (desktop only)
+  // Films preview silently on hover (desktop only); the preview is removed when the mouse leaves
   if (matchMedia('(hover: hover)').matches && !reduceMotion) {
     $$('.tile', grid).forEach(function (t) {
       var m = byId[t.dataset.open].media[0]; if (!m.video) return;
-      var v;
+      var v = null, timer = null;
       t.addEventListener('mouseenter', function () {
-        if (!v) { v = document.createElement('video'); v.src = m.video; v.muted = true; v.loop = true; v.playsInline = true; $('.tile-media', t).appendChild(v); }
-        v.play().then(function () { t.classList.add('playing'); }).catch(function () {});
+        timer = setTimeout(function () {             // short delay so sweeping the mouse across doesn't start downloads
+          v = document.createElement('video'); v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto'; v.src = m.video;
+          $('.tile-media', t).appendChild(v);
+          v.play().then(function () { t.classList.add('playing'); }).catch(function () {});
+        }, 250);
       });
-      t.addEventListener('mouseleave', function () { if (v) { v.pause(); t.classList.remove('playing'); } });
+      t.addEventListener('mouseleave', function () {
+        clearTimeout(timer); t.classList.remove('playing'); unloadVideo(v); v = null;
+      });
     });
   }
 
@@ -196,9 +218,11 @@
     idx = (i + list.length) % list.length;
     var m = list[idx];
     stage.style.setProperty('--from', (dir || 0) * 40 + 'px');
+    unloadVideo($('video', stage));                  // cancel the previous film's download first
     stage.innerHTML = m.video
-      ? '<video src="' + m.video + '" poster="' + m.thumb + '" controls autoplay playsinline></video>'
+      ? '<video src="' + m.video + '" poster="' + m.thumb + '" controls autoplay playsinline preload="auto"></video>'
       : '<img src="' + m.src + '" alt="' + esc(current.client + ', ' + current.title + ', image ' + (idx + 1)) + '">';
+    var film = $('video', stage); if (film) watchStalls(film);
     $('#viewerCount').textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
     $$('button', thumbs).forEach(function (b, j) { b.setAttribute('aria-current', String(j === idx)); });
     var active = thumbs.children[idx]; if (active) active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -211,10 +235,12 @@
     var many = current.media.length > 1;
     thumbs.hidden = !many; $$('.viewer-nav', viewer).forEach(function (b) { b.hidden = !many; });
     thumbs.innerHTML = current.media.map(function (m, j) { return '<button type="button" aria-label="Show item ' + (j + 1) + '"><img src="' + m.thumb + '" alt="" loading="lazy"></button>'; }).join('');
+    $$('.tile-media video').forEach(unloadVideo); $$('.tile.playing').forEach(function (t) { t.classList.remove('playing'); });
     viewer.hidden = false; viewer.classList.add('open'); document.body.classList.add('locked');
     show(0, 0); $('.viewer-close').focus();
   }
   function closeViewer() {
+    unloadVideo($('video', stage));
     viewer.hidden = true; viewer.classList.remove('open'); stage.innerHTML = '';
     document.body.classList.remove('locked');
     if (opener) opener.focus();
