@@ -95,6 +95,7 @@ em.serif { font-family: var(--serif); font-style: italic; font-weight: 400; font
 /* After the hero, pills match the page theme */
 .nav.past .pill { background: color-mix(in srgb, var(--bg) 70%, transparent); border-color: var(--line); color: var(--fg); }
 .nav-logo { justify-self: start; display: inline-flex; align-items: baseline; gap: .12em; padding: 10px 20px; text-decoration: none; font-family: var(--display); font-size: 20px; letter-spacing: -.02em; line-height: 1; }
+.nav-logo img { display: block; height: 18px; width: auto; }   /* red N THINK wordmark */
 .logo-n { font-weight: 800; color: var(--accent); }
 .logo-think { font-weight: 600; }
 .nav-clock { justify-self: center; padding: 11px 20px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -287,8 +288,13 @@ a.ccard:hover { border-color: var(--accent); transform: translateY(-2px); }
 
 .footer { margin-top: clamp(80px, 10vw, 130px); padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); }
 .footer-cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: clamp(32px, 6vw, 96px); padding-bottom: clamp(40px, 6vw, 80px); }
-.logo-big { display: inline-flex; align-items: baseline; gap: .12em; text-decoration: none; font-family: var(--display); font-size: 34px; letter-spacing: -.03em; line-height: 1; }
-.footer-tagline { margin: 22px 0 14px; font-family: var(--serif); font-style: italic; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.1; color: var(--accent); }
+.logo-big { display: inline-block; text-decoration: none; }
+.logo-big img { display: block; width: clamp(180px, 20vw, 250px); height: auto; }
+/* Show the dark-ink logo on light backgrounds and the cream one on dark */
+.logo-cream { display: none !important; }
+[data-theme="dark"] .logo-ink { display: none !important; }
+[data-theme="dark"] .logo-cream { display: block !important; }
+.footer-tagline { margin: 18px 0 14px; font-family: var(--serif); font-style: italic; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.1; color: var(--accent); }
 .footer-blurb { margin: 0; max-width: 40ch; font-size: 14px; line-height: 1.8; color: var(--muted); }
 .foot-label { margin: 0 0 16px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 .foot-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
