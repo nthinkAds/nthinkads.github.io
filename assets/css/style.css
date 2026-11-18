@@ -260,6 +260,17 @@ em.serif { font-family: var(--serif); font-style: italic; font-weight: 400; font
 .stats dd { margin: 8px 0 0; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
 .leader { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: clamp(24px, 4vw, 60px); margin-top: clamp(60px, 8vw, 110px); padding: clamp(22px, 3vw, 36px); border-radius: var(--radius); background: var(--bg-2); border: 1px solid var(--line); }
 .leader-mark { aspect-ratio: 4 / 5; display: grid; place-items: center; border-radius: 10px; background: var(--fg); color: var(--bg); font-family: var(--display); font-weight: 800; font-size: clamp(64px, 8vw, 110px); letter-spacing: -.05em; }
+/* Director's portrait in the leadership card */
+.leader-photo { align-self: start; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+/* Team row: matching black-and-white portraits */
+.team { margin-top: clamp(60px, 8vw, 110px); }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.member { margin: 0; }
+.member img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; filter: grayscale(1); transition: transform .8s var(--ease); }
+.member:hover img { transform: scale(1.02); }
+.member figcaption { margin-top: 12px; }
+.member-name { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 16px; font-stretch: 112%; }
+.member-role { display: block; margin-top: 4px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .leader-body .label-row { margin-bottom: 24px; }
 .leader h3 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 3.6vw, 50px); line-height: 1; letter-spacing: -.025em; }
 .leader-role { margin: 8px 0 18px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
@@ -397,7 +408,8 @@ body.locked { overflow: hidden; }
   #films .h-head { flex-direction: column; align-items: flex-start; gap: 0; }   /* heading above the note on phones */
   .film-media { height: clamp(240px, 46vh, 400px); }
   .about-grid, .contact-grid, .leader, .footer-cols { grid-template-columns: 1fr; }
-  .leader-mark { max-width: 220px; }
+  .leader-photo { max-width: 260px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-head .indent { padding-left: 0; }
   .viewer-nav { display: none; }   /* swipe on phones instead */
 }

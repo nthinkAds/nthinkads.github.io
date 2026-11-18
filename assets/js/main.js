@@ -122,7 +122,7 @@
   track.innerHTML = DISCIPLINES.map(function (d, i) {
     var n = String(i + 1).padStart(2, '0');
     return '<article class="scard">' +
-      '<div class="scard-body"><div class="scard-top"><span><b>( ' + n + ' )</b></span><span>Discipline</span></div>' +
+      '<div class="scard-body"><div class="scard-top"><span><b>( ' + n + ' )</b></span><span>Service</span></div>' +
       '<h3>' + esc(d.name) + '</h3><p>' + esc(d.text) + '</p>' +
       '<ul class="tags">' + d.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
       '<div class="scard-img"><img src="' + d.img + '" alt="" loading="lazy"></div></article>';
@@ -303,6 +303,14 @@
     if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
     if (Math.abs(dx) > 50 && current.media.length > 1) show(idx + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
   });
+
+  /* ---------- Team: one portrait card per person ---------- */
+  $('#teamGrid').innerHTML = TEAM.map(function (t) {
+    var label = t.name ? t.name + ', ' + t.role : 'N Think ' + t.role;
+    return '<figure class="member"><img src="' + t.img + '" alt="' + esc(label) + '" width="800" height="1000" loading="lazy">' +
+      '<figcaption>' + (t.name ? '<span class="member-name">' + esc(t.name) + '</span>' : '') +
+      '<span class="member-role">' + esc(t.role) + '</span></figcaption></figure>';
+  }).join('');
 
   /* ---------- Studio stats: count up once when visible ---------- */
   var figs = $('#figures');

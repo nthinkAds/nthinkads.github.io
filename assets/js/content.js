@@ -17,22 +17,33 @@ window.FIGURES = [
   ['15+', 'years of industry leadership'],
   ['360°', 'integrated creative solutions'],
   ['100%', 'boutique focus and attention'],
-  ['05', 'core creative disciplines'],
+  ['07', 'core services'],
   ['14', 'iconic brands and collaborations']
 ];
 
-// The five disciplines: picture, short description and tags
+// What we do: N Think's seven services (picture from our own work, short description, tags)
 window.DISCIPLINES = [
-  { name: 'Brand identity', img: 'assets/work/identities/02.webp', text: 'Strategy first, then the marks, type and systems that let a brand stay recognisable everywhere it shows up.',
-    tags: ['Brand strategy', 'Visual identity', 'Typography', 'Guidelines', 'Design systems'] },
-  { name: 'Promotional design', img: 'assets/work/maggi-pro-posm/08.webp', text: 'Campaign key visuals and everything that carries them: magazine pages, hoardings, pennants, pull-ups and brochures.',
-    tags: ['Campaign design', 'Editorial print', 'Outdoor', 'Brochures', 'Key visuals'] },
+  { name: 'Outdoor', img: 'assets/work/hiru-foods/01.webp', text: 'Hoardings, building wraps, backdrops and fleet branding, designed to be read at speed and printed at any size.',
+    tags: ['Hoardings', 'Highway boards', 'Backdrops', 'Fleet branding'] },
+  { name: 'Interior', img: 'assets/work/nestle-office/04.webp', text: 'Offices, training rooms, stalls and test kitchens, visualised in 3D so you can walk through the space before it is built.',
+    tags: ['Office interiors', 'Exhibition stalls', '3D visualisation', 'Brand walls'] },
+  { name: 'Videos', img: 'assets/video/nestea.jpg', text: 'Product films, recipe videos, motion graphics and social cuts, shot, edited and graded in-house.',
+    tags: ['TV and digital films', 'Recipe videos', 'Motion graphics', 'Social cuts'] },
+  { name: 'Product shoot', img: 'assets/work/nescafe-recipe-book/03.webp', text: 'Food and product photography styled for the pack, the page and the feed.',
+    tags: ['Food styling', 'Product photography', 'Packshots', 'Lifestyle'] },
+  { name: 'Illustration', img: 'assets/work/nestle-planner/01.webp', text: 'Hand-drawn scenes, characters and concept sketches that give a brand a look nobody else has.',
+    tags: ['Brand illustration', 'Concept sketches', 'Characters', 'Calendars'] },
+  { name: 'Booklets', img: 'assets/work/nescafe-recipe-book/01.webp', text: 'Recipe books, brochures, planners and leaflets, laid out to be kept, not thrown away.',
+    tags: ['Recipe books', 'Brochures', 'Planners', 'Leaflets'] },
   { name: 'Packaging', img: 'assets/work/rushi-salt/02.webp', text: 'Packs that win the two seconds a shopper gives a shelf, built to print cleanly at scale.',
-    tags: ['Structural packaging', 'Luxury labels', 'Consumer packs', 'Unboxing'] },
-  { name: 'Creative content', img: 'assets/work/pepper-cube-social/02.webp', text: 'Social campaigns, motion and art direction that keep a brand talking between launches.',
-    tags: ['Digital content', 'Social campaigns', 'Art direction', 'Storytelling', 'Motion'] },
-  { name: 'Photography and videography', img: 'assets/video/nestea.jpg', text: 'Food, product and people, shot and graded in-house so the film matches the print.',
-    tags: ['Cinematography', 'Commercial photography', 'Direction', '35mm stills', 'Colour grading'] }
+    tags: ['Consumer packs', 'Labels', 'Print-ready artwork'] }
+];
+
+// Team row in the Studio section. Leave name empty ('') to show the role only.
+window.TEAM = [
+  { name: '', role: 'IT and digital', img: 'assets/team/it.webp' },
+  { name: '', role: 'Interior design', img: 'assets/team/interior.webp' },
+  { name: '', role: 'Creative team', img: 'assets/team/team-4.webp' }
 ];
 
 // Logos section: brand marks N Think designed (img: trimmed logo; index: its image in the 'identities' project viewer)
