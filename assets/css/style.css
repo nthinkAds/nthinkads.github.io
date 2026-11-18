@@ -386,6 +386,19 @@ body.locked { overflow: hidden; }
 .film:hover .film-media img { transform: scale(1.04); filter: brightness(.75); }
 .film.playing .tile-media video { opacity: 1; }
 .film .tile-play { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+/* YouTube call to action in the films section */
+.films-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: clamp(32px, 4vw, 56px); }
+.films-cta .work-note { margin: 0; }
+.yt-icon { position: relative; z-index: 1; display: inline-block; width: 26px; height: 18px; border-radius: 5px; background: currentColor; }
+.yt-icon::after { content: ''; position: absolute; left: 50%; top: 50%; translate: -35% -50%; border-left: 8px solid var(--accent); border-block: 5px solid transparent; }
+.yt-btn:hover .yt-icon::after { border-left-color: var(--fg); }
+.film-more { text-decoration: none; }
+.film-more-box { --ratio: 4 / 5; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: clamp(20px, 3vw, 32px); border-radius: var(--radius); background: var(--accent); color: var(--on-accent); transition: transform .5s var(--ease); }
+.film-more:hover .film-more-box { transform: translateY(-4px); }
+.yt-icon-lg { width: 64px; height: 44px; border-radius: 12px; margin-bottom: auto; }
+.yt-icon-lg::after { border-left-width: 18px; border-block-width: 11px; }
+.film-more-big { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(26px, 3vw, 40px); line-height: 1; letter-spacing: -.01em; }
+.film-more-handle { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
 .film-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .film:hover .tile-title { color: var(--accent); }
 

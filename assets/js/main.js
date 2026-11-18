@@ -167,7 +167,12 @@
         (p.media.length > 1 ? '<span class="tile-badge">' + p.media.length + ' films</span>' : '') +
       '</div><span class="film-row"><span class="tile-title">' + esc(p.title) + '</span><span class="fcard-idx">' + pad2(i + 1) + '</span></span>' +
       '<span class="tile-meta">' + esc(p.client) + '</span></button>';
-  }).join('');
+  }).join('') +
+    // Closing card: sends visitors to the YouTube channel for more films
+    '<a class="film film-more" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">' +
+      '<div class="film-media film-more-box"><span class="yt-icon yt-icon-lg" aria-hidden="true"></span>' +
+      '<span class="film-more-big">More films<br>on YouTube</span><span class="film-more-handle">@nthinklk ↗</span></div>' +
+      '<span class="film-row"><span class="tile-title">Visit our channel</span></span><span class="tile-meta">YouTube</span></a>';
   carousel(filmTrack, function (cur, total) { $('#filmCount').textContent = pad2(cur) + ' / ' + pad2(total); });
 
   /* ---------- Logos: equal tiles; clicking one opens the identities viewer at that logo ---------- */
@@ -225,7 +230,7 @@
 
   // Films preview silently on hover (desktop only); the preview is removed when the mouse leaves
   if (matchMedia('(hover: hover)').matches && !reduceMotion) {
-    $$('.tile, .film').forEach(function (t) {
+    $$('.tile, .film[data-open]').forEach(function (t) {  // only real films (the YouTube card has no data-open)
       var m = byId[t.dataset.open].media[0]; if (!m.video) return;
       var v = null, timer = null;
       t.addEventListener('mouseenter', function () {
