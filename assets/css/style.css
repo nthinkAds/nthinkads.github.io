@@ -124,12 +124,12 @@ main > section { padding: var(--gap) var(--pad) 0; }
 .sec-note { max-width: 42ch; color: var(--ink-2); margin: 0 0 2.5rem; }
 
 /* ---------- 01 Hero ---------- */
-.hero { min-height: 100svh; padding-top: clamp(6.5rem, 14vh, 9rem) !important; display: grid; grid-template-columns: 1fr minmax(260px, 34%); grid-template-rows: auto 1fr auto; column-gap: clamp(1.5rem, 4vw, 4rem); }
+.hero { min-height: 92svh; padding-top: clamp(6.5rem, 14vh, 9rem) !important; display: grid; grid-template-columns: 1fr; grid-template-rows: auto auto auto; align-content: center; column-gap: clamp(1.5rem, 4vw, 4rem); }
 .hero-place { grid-column: 1 / -1; display: flex; gap: .9rem; margin: 0 0 1.5rem; color: var(--ink-2); font-size: .95rem; }
 .hero-title {
   grid-column: 1 / -1; grid-row: 2; margin: 0; align-self: start; position: relative; z-index: 2;
   font-family: var(--display); font-weight: 750; font-stretch: 100%;
-  font-size: clamp(2.8rem, 7.6vw, 8.8rem); line-height: .92; letter-spacing: -.04em;
+  font-size: clamp(2.8rem, 9vw, 10.5rem); line-height: .92; letter-spacing: -.04em;
 }
 .hero-title .line { display: block; overflow: hidden; padding-bottom: .06em; }
 .hero-title .line > span { display: inline-block; }
@@ -186,7 +186,7 @@ main > section { padding: var(--gap) var(--pad) 0; }
 .feat-strip img { height: 100%; }
 
 /* ---------- 04 Work: archive grid ---------- */
-.archive { margin-top: clamp(5rem, 10vw, 8rem); }
+.archive { margin-top: clamp(2.5rem, 5vw, 4rem); }  /* sits closer to the featured projects */
 .archive-head { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
 .archive-title { margin: 0; font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: clamp(2rem, 4.5vw, 3.8rem); letter-spacing: -.04em; line-height: 1; }
 .filters { display: flex; flex-wrap: wrap; gap: .4rem; }

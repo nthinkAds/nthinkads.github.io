@@ -58,13 +58,15 @@
 
   /* ---------- Hero: the single page-load sequence ---------- */
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('loaded'); }); });
+  // Hero film removed for now; these stay null so the viewer code below still works
   var heroVideo = $('#heroVideo'), reelBtn = $('.reel-toggle');
-  if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); reelBtn.textContent = 'Play'; reelBtn.setAttribute('aria-label', 'Play background film'); }
-  reelBtn.addEventListener('click', function () {
-    var paused = heroVideo.paused; paused ? heroVideo.play() : heroVideo.pause();
-    reelBtn.textContent = paused ? 'Pause' : 'Play';
-    reelBtn.setAttribute('aria-label', (paused ? 'Pause' : 'Play') + ' background film');
-  });
+  if (heroVideo && reelBtn) {
+    if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); reelBtn.textContent = 'Play'; }
+    reelBtn.addEventListener('click', function () {
+      var paused = heroVideo.paused; paused ? heroVideo.play() : heroVideo.pause();
+      reelBtn.textContent = paused ? 'Pause' : 'Play';
+    });
+  }
 
   /* ---------- Clients: fill the marquee twice so it loops seamlessly ---------- */
   var track = $('#clientTrack');
@@ -184,7 +186,7 @@
   function closeViewer() {
     viewer.hidden = true; viewer.classList.remove('open'); stage.innerHTML = '';
     document.body.classList.remove('locked');
-    if (!reduceMotion && reelBtn.textContent === 'Pause') heroVideo.play().catch(function () {});
+    if (heroVideo && !reduceMotion && reelBtn.textContent === 'Pause') heroVideo.play().catch(function () {});
     if (opener) opener.focus();
   }
 
