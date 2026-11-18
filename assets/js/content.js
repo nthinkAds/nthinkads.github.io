@@ -34,6 +34,14 @@ window.DISCIPLINES = [
     tags: ['Cinematography', 'Commercial photography', 'Direction', '35mm stills', 'Colour grading'] }
 ];
 
+// Logos section: brand marks N Think designed (img: trimmed logo; index: its image in the 'identities' project viewer)
+window.LOGOS = [
+  { name: 'IIME', sector: 'Education', img: 'assets/logos/iime.webp', index: 0 },
+  { name: 'Alfa Marine', sector: 'Marine', img: 'assets/logos/alfa-marine.webp', index: 1 },
+  { name: 'Murray Institute of Business', sector: 'Education', img: 'assets/logos/murray.webp', index: 2 },
+  { name: 'Yara', sector: 'Ceylon tea', img: 'assets/logos/yara.webp', index: 3 }
+];
+
 // Filter categories for the gallery (key: label)
 window.CATEGORIES = {
   campaign: 'Campaigns',

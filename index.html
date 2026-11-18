@@ -43,6 +43,7 @@
     <div class="pill nav-right">
       <nav class="nav-links" aria-label="Sections">
         <a href="#featured" data-nav>Work</a>
+        <a href="#films" data-nav>Films</a>
         <a href="#disciplines" data-nav>Disciplines</a>
         <a href="#studio" data-nav>Studio</a>
         <a href="#contact" data-nav>Contact</a>
@@ -55,7 +56,7 @@
     </div>
   </header>
   <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#featured">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+    <a href="#featured">Work</a><a href="#films">Films</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
   </div>
 
   <main>
@@ -104,6 +105,22 @@
       </div>
     </section>
 
+    <!-- ============ Films: a row of big previews, moved with the arrow buttons ============ -->
+    <section class="section" id="films">
+      <div class="wrap">
+        <div class="label-row"><span>( Films )</span><span id="filmCount">Motion</span></div>
+        <div class="h-head">
+          <h2 class="sec-title">Brands in <em class="serif">motion</em></h2>
+          <p class="work-note">Click any film to watch it with sound. More on <a class="text-link" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">our YouTube channel</a>.</p>
+        </div>
+      </div>
+      <div class="hviewport">
+        <button class="harrow prev" type="button" aria-label="Previous film" data-for="filmTrack" aria-controls="filmTrack">←</button>
+        <div class="htrack film-track" id="filmTrack" tabindex="-1"></div>
+        <button class="harrow next" type="button" aria-label="Next film" data-for="filmTrack" aria-controls="filmTrack">→</button>
+      </div>
+    </section>
+
     <!-- ============ Disciplines: cards in a row, moved with the arrow buttons ============ -->
     <section class="section" id="disciplines">
       <div class="wrap">
@@ -114,9 +131,9 @@
         </div>
       </div>
       <div class="hviewport">
-        <button class="harrow prev" type="button" aria-label="Previous discipline" aria-controls="discStack">←</button>
+        <button class="harrow prev" type="button" aria-label="Previous discipline" data-for="discStack" aria-controls="discStack">←</button>
         <div class="htrack" id="discStack" tabindex="-1"></div>
-        <button class="harrow next" type="button" aria-label="Next discipline" aria-controls="discStack">→</button>
+        <button class="harrow next" type="button" aria-label="Next discipline" data-for="discStack" aria-controls="discStack">→</button>
       </div>
     </section>
 
@@ -126,13 +143,22 @@
         <div class="label-row"><span>( Archive )</span><span id="workCount">Selected work</span></div>
         <div class="work-head">
           <h2 class="sec-title">Selected <em class="serif">work</em></h2>
-          <p class="work-note">Real projects for Nestlé Professional, Kevilton, MAGGI, NESCAFÉ and more. Films too, with more on <a class="text-link" href="https://www.youtube.com/@nthinklk" target="_blank" rel="noopener">our YouTube channel</a>.</p>
+          <p class="work-note">Real projects for Nestlé Professional, Kevilton, MAGGI, NESCAFÉ and more: campaigns, print, packaging, spaces and social.</p>
         </div>
         <div class="filters" role="toolbar" aria-label="Filter work by category" id="filters"></div>
         <div class="masonry-wrap" id="masonryWrap">
           <div class="masonry" id="grid" aria-live="polite"></div>
         </div>
         <div class="expand-row"><button class="btn btn-ghost" type="button" id="expandBtn"><span>Expand full gallery ↓</span></button></div>
+      </div>
+    </section>
+
+    <!-- ============ Logos: brand marks in a grid of equal tiles ============ -->
+    <section class="section" id="logos">
+      <div class="wrap">
+        <div class="label-row"><span>( Identities )</span><span id="logoCount">Logos</span></div>
+        <h2 class="sec-title">Marks we've <em class="serif">made</em></h2>
+        <div class="logo-grid" id="logoGrid"></div>
       </div>
     </section>
 
@@ -208,7 +234,7 @@
             </div>
             <div>
               <p class="foot-label">( Navigate )</p>
-              <ul class="foot-list"><li><a href="#featured">Work</a></li><li><a href="#disciplines">Disciplines</a></li><li><a href="#studio">Studio</a></li><li><a href="#contact">Contact</a></li></ul>
+              <ul class="foot-list"><li><a href="#featured">Work</a></li><li><a href="#films">Films</a></li><li><a href="#disciplines">Disciplines</a></li><li><a href="#studio">Studio</a></li><li><a href="#contact">Contact</a></li></ul>
             </div>
             <div>
               <p class="foot-label">( Direct )</p>

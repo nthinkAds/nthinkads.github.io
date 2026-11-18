@@ -352,6 +352,27 @@ body.locked { overflow: hidden; }
 /* Hidden in forms and when the mouse leaves the window */
 .cursor.is-text .cursor-ring, .cursor.is-text .cursor-dot, .cursor.is-away .cursor-ring, .cursor.is-away .cursor-dot { opacity: 0; }
 
+/* ---------- Films: a row of big previews at one shared height ---------- */
+.film-track { align-items: flex-start; }
+.film { flex: 0 0 auto; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; scroll-snap-align: start; }
+/* Height is fixed; width follows each film's own shape (landscape or portrait) */
+.film-media { height: clamp(260px, 52vh, 480px); aspect-ratio: var(--ratio); max-width: 86vw; }
+.film-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease), filter .5s; }
+.film:hover .film-media img { transform: scale(1.04); filter: brightness(.75); }
+.film.playing .tile-media video { opacity: 1; }
+.film .tile-play { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+.film-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.film:hover .tile-title { color: var(--accent); }
+
+/* ---------- Logos: equal tiles, each logo centred on white ---------- */
+.logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.logo-tile { align-self: start; display: block; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; }
+/* White box in both themes, because the logos are drawn for a white background */
+.logo-box { display: grid; place-items: center; aspect-ratio: 1; padding: 13%; border-radius: 10px; background: #fff; border: 1px solid var(--line); overflow: hidden; }
+.logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform .6s var(--ease); }
+.logo-tile:hover .logo-box img { transform: scale(1.06); }
+.logo-tile:hover .tile-title { color: var(--accent); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
   .nav-clock { display: none; }
@@ -369,6 +390,9 @@ body.locked { overflow: hidden; }
   .scard-img { aspect-ratio: 16 / 10; order: -1; }
   .scard h3 { margin-top: 16px; }
   .masonry { columns: 2; }
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  #films .h-head { flex-direction: column; align-items: flex-start; gap: 0; }   /* heading above the note on phones */
+  .film-media { height: clamp(240px, 46vh, 400px); }
   .about-grid, .contact-grid, .leader, .footer-cols { grid-template-columns: 1fr; }
   .leader-mark { max-width: 220px; }
   .hero-head .indent { padding-left: 0; }

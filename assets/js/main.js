@@ -62,7 +62,7 @@
       if (en.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle('active', a.hash === '#' + en.target.id); });
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['featured', 'disciplines', 'studio', 'contact'].forEach(function (id) { spy.observe(document.getElementById(id)); });
+  ['featured', 'films', 'disciplines', 'studio', 'contact'].forEach(function (id) { spy.observe(document.getElementById(id)); });
 
   // Mobile menu
   var menuBtn = $('.menu-btn'), menu = $('#mobile-menu');
@@ -124,31 +124,60 @@
       '<ul class="tags">' + d.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
       '<div class="scard-img"><img src="' + d.img + '" alt="" loading="lazy"></div></article>';
   }).join('');
-  var total = DISCIPLINES.length, prevBtn = $('.harrow.prev'), nextBtn = $('.harrow.next');
-  function cardStep() { var c = track.firstElementChild; return c ? c.offsetWidth + 22 : track.clientWidth; } // one card + gap
-  function updateDisc() {
-    var max = track.scrollWidth - track.clientWidth;
-    var cur = Math.min(total, Math.round(track.scrollLeft / cardStep()) + 1);
-    if (track.scrollLeft >= max - 4) cur = total;               // at the end, show the last number
-    discCount.textContent = String(cur).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
-    discBar.style.width = (cur / total * 100) + '%';
-    prevBtn.disabled = track.scrollLeft <= 4;                    // fade the arrow that can't go further
-    nextBtn.disabled = track.scrollLeft >= max - 4;
+  /* Reusable sideways row with arrow buttons (used by Disciplines and Films).
+     onMove(current, total) runs whenever the row moves, so a section can show its own counter. */
+  function carousel(track, onMove) {
+    var prev = $('.harrow.prev[data-for="' + track.id + '"]'), next = $('.harrow.next[data-for="' + track.id + '"]');
+    function step() { var c = track.firstElementChild; return c ? c.offsetWidth + 22 : track.clientWidth; } // one card + gap
+    function update() {
+      var max = track.scrollWidth - track.clientWidth, total = track.children.length;
+      var cur = Math.min(total, Math.round(track.scrollLeft / step()) + 1);
+      if (track.scrollLeft >= max - 4) cur = total;             // at the end, show the last number
+      prev.disabled = track.scrollLeft <= 4;                     // fade the arrow that can't go further
+      next.disabled = track.scrollLeft >= max - 4;
+      if (onMove) onMove(cur, total);
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    // Ignore sideways wheel/trackpad swipes over the cards; normal up/down page scrolling still works
+    track.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) e.preventDefault(); }, { passive: false });
+    addEventListener('resize', update);
+    addEventListener('load', update);                            // images change the row width once loaded
+    update();
   }
-  prevBtn.addEventListener('click', function () { track.scrollBy({ left: -cardStep(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
-  nextBtn.addEventListener('click', function () { track.scrollBy({ left: cardStep(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
-  track.addEventListener('scroll', updateDisc, { passive: true });
-  // Ignore sideways wheel/trackpad swipes over the cards; normal up/down page scrolling still works
-  track.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) e.preventDefault(); }, { passive: false });
-  addEventListener('resize', updateDisc);
-  updateDisc();
+  var pad2 = function (n) { return String(n).padStart(2, '0'); };
+  carousel(track, function (cur, total) {
+    discCount.textContent = pad2(cur) + ' / ' + pad2(total);
+    discBar.style.width = (cur / total * 100) + '%';
+  });
 
-  /* ---------- Selected work: masonry grid, films spread between stills ---------- */
-  var stills = PROJECTS.filter(function (p) { return !p.featured && p.cat !== 'motion'; });
-  var films = PROJECTS.filter(function (p) { return !p.featured && p.cat === 'motion'; });
-  var rest = [], step = Math.max(1, Math.round(stills.length / (films.length || 1)));
-  stills.forEach(function (p, i) { rest.push(p); if (i % step === step - 1 && films.length) rest.push(films.shift()); });
-  rest = rest.concat(films);
+  /* ---------- Films: every motion project as a big preview card in its own row ---------- */
+  var filmList = PROJECTS.filter(function (p) { return p.cat === 'motion'; });
+  var filmTrack = $('#filmTrack');
+  filmTrack.innerHTML = filmList.map(function (p, i) {
+    var m = p.media[0];
+    return '<button class="film" type="button" data-open="' + p.id + '" style="--ratio:' + m.w + '/' + m.h + '">' +
+      '<div class="tile-media film-media">' +
+        '<img src="' + m.thumb + '" alt="' + esc(p.client + ', ' + p.title) + '" loading="lazy" width="' + m.w + '" height="' + m.h + '">' +
+        '<span class="tile-play" aria-hidden="true"></span>' +
+        (p.media.length > 1 ? '<span class="tile-badge">' + p.media.length + ' films</span>' : '') +
+      '</div><span class="film-row"><span class="tile-title">' + esc(p.title) + '</span><span class="fcard-idx">' + pad2(i + 1) + '</span></span>' +
+      '<span class="tile-meta">' + esc(p.client) + '</span></button>';
+  }).join('');
+  carousel(filmTrack, function (cur, total) { $('#filmCount').textContent = pad2(cur) + ' / ' + pad2(total); });
+
+  /* ---------- Logos: equal tiles; clicking one opens the identities viewer at that logo ---------- */
+  $('#logoGrid').innerHTML = LOGOS.map(function (l) {
+    return '<button class="logo-tile" type="button" data-open="identities" data-index="' + l.index + '">' +
+      '<span class="logo-box"><img src="' + l.img + '" alt="' + esc(l.name + ' logo') + '" loading="lazy"></span>' +
+      '<span class="tile-title">' + esc(l.name) + '</span><span class="tile-meta">' + esc(l.sector) + '</span></button>';
+  }).join('');
+  $('#logoCount').textContent = pad2(LOGOS.length) + ' marks';
+
+  /* ---------- Selected work: masonry grid of stills ---------- */
+  // Films and logos have their own sections, so the grid shows the rest
+  var rest = PROJECTS.filter(function (p) { return !p.featured && p.cat !== 'motion' && p.cat !== 'identity'; });
 
   var grid = $('#grid');
   grid.innerHTML = rest.map(function (p) {
@@ -193,7 +222,7 @@
 
   // Films preview silently on hover (desktop only); the preview is removed when the mouse leaves
   if (matchMedia('(hover: hover)').matches && !reduceMotion) {
-    $$('.tile', grid).forEach(function (t) {
+    $$('.tile, .film').forEach(function (t) {
       var m = byId[t.dataset.open].media[0]; if (!m.video) return;
       var v = null, timer = null;
       t.addEventListener('mouseenter', function () {
@@ -228,7 +257,7 @@
     var active = thumbs.children[idx]; if (active) active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
     var next = list[(idx + 1) % list.length]; if (next && next.src) { var im = new Image(); im.src = next.src; } // preload the next one
   }
-  function openViewer(id, trigger) {
+  function openViewer(id, trigger, start) {
     current = byId[id]; opener = trigger;
     $('#viewerTitle').textContent = current.title;
     $('#viewerClient').textContent = current.client + ' ✦ ' + CATEGORIES[current.cat];
@@ -237,7 +266,7 @@
     thumbs.innerHTML = current.media.map(function (m, j) { return '<button type="button" aria-label="Show item ' + (j + 1) + '"><img src="' + m.thumb + '" alt="" loading="lazy"></button>'; }).join('');
     $$('.tile-media video').forEach(unloadVideo); $$('.tile.playing').forEach(function (t) { t.classList.remove('playing'); });
     viewer.hidden = false; viewer.classList.add('open'); document.body.classList.add('locked');
-    show(0, 0); $('.viewer-close').focus();
+    show(start || 0, 0); $('.viewer-close').focus();
   }
   function closeViewer() {
     unloadVideo($('video', stage));
@@ -245,7 +274,7 @@
     document.body.classList.remove('locked');
     if (opener) opener.focus();
   }
-  document.addEventListener('click', function (e) { var t = e.target.closest('[data-open]'); if (t) openViewer(t.dataset.open, t); });
+  document.addEventListener('click', function (e) { var t = e.target.closest('[data-open]'); if (t) openViewer(t.dataset.open, t, +(t.dataset.index || 0)); });
   $('.viewer-close').addEventListener('click', closeViewer);
   $('.viewer-nav.prev').addEventListener('click', function () { show(idx - 1, -1); });
   $('.viewer-nav.next').addEventListener('click', function () { show(idx + 1, 1); });
@@ -325,7 +354,7 @@
     // Decide the cursor style from what's under the mouse
     document.addEventListener('mouseover', function (e) {
       var t = e.target;
-      var work = t.closest('.fcard, .tile');
+      var work = t.closest('.fcard, .tile, .film, .logo-tile');
       var text = t.closest('input, textarea, select');
       var link = t.closest('a, button, .chip, label');
       cur.classList.toggle('is-text', !!text);
