@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>N Think — Ideas that make brands impossible to ignore</title>
+  <meta name="description" content="N Think is a boutique integrated creative agency in Colombo, Sri Lanka: brand identity, promotional design, packaging, creative content, photography and videography.">
+  <meta name="theme-color" content="#EDEEF0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)">
+  <!-- Social share preview -->
+  <meta property="og:title" content="N Think — Creative studio, Colombo">
+  <meta property="og:description" content="Ideas that make brands impossible to ignore.">
+  <meta property="og:image" content="assets/work/kevilton-nature/01.webp">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Set the theme BEFORE the page paints, so there is no white flash in dark mode -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('nthink-theme'); } catch (e) {}
+      var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to the work</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- ============ Fixed header ============ -->
+  <header class="nav" id="top">
+    <a class="wordmark" href="#hero" aria-label="N Think, back to top">
+      <span class="wordmark-n">N</span><span class="wordmark-think">Think</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#work" data-nav>Work</a>
+      <a href="#disciplines" data-nav>Disciplines</a>
+      <a href="#studio" data-nav>Studio</a>
+      <a href="#contact" data-nav>Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <!-- Half-filled circle: the filled half flips with the theme -->
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path class="tt-fill" d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+      </button>
+      <a class="btn btn-small" href="#contact">Start a conversation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a href="#work">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </div>
+
+  <main>
+    <!-- ============ 01 Hero ============ -->
+    <section class="hero" id="hero">
+      <p class="hero-place"><span class="sec-no">01</span> Boutique creative studio, Colombo</p>
+      <h1 class="hero-title" aria-label="Ideas that make brands impossible to ignore.">
+        <span class="line"><span>Ideas that make</span></span>
+        <span class="line"><span>brands impossible</span></span>
+        <span class="line"><span>to ignore.</span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-text">An integrated agency for brand, content, digital and visual work. Fifteen years of making FMCG, food and beverage, industrial and broadcast brands look like themselves, only louder.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="#work">See the work</a>
+          <a class="btn btn-ghost" href="#contact">Start a conversation</a>
+        </div>
+      </div>
+      <figure class="hero-reel crop">
+        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/video/hero.jpg">
+          <source src="assets/video/hero.mp4" type="video/mp4">
+        </video>
+        <figcaption>MILO, iced — campaign film</figcaption>
+        <button class="reel-toggle" type="button" aria-label="Pause background film">Pause</button>
+      </figure>
+    </section>
+
+    <!-- ============ 02 Clients ============ -->
+    <section class="clients" aria-label="Clients and collaborations">
+      <div class="marquee"><div class="marquee-track" id="clientTrack"></div></div>
+    </section>
+
+    <!-- ============ 03 Manifesto ============ -->
+    <section class="manifesto" id="manifesto">
+      <p class="sec-head"><span class="sec-no">03</span> How we work</p>
+      <p class="manifesto-text" id="manifestoText">We are small on purpose. Every brief gets the people who pitched it, from the first sketch to the last proof on press. Strategy, craft and technology sit at one table, so the idea you approve is the idea that ends up on the shelf, the hoarding and the screen.</p>
+    </section>
+
+    <!-- ============ 04 Work ============ -->
+    <section class="work" id="work">
+      <div class="sec-row">
+        <p class="sec-head"><span class="sec-no">04</span> Selected work</p>
+        <p class="sec-note">Real projects for Nestlé Professional, Kevilton, MAGGI, NESCAFÉ and more. Select any piece to see the full set.</p>
+      </div>
+      <div class="featured" id="featured"></div>
+
+      <div class="archive">
+        <div class="archive-head">
+          <h2 class="archive-title">Everything else</h2>
+          <div class="filters" role="toolbar" aria-label="Filter work by category" id="filters"></div>
+        </div>
+        <div class="grid" id="grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ 05 Disciplines ============ -->
+    <section class="disciplines" id="disciplines">
+      <p class="sec-head"><span class="sec-no">05</span> Five disciplines</p>
+      <div class="disc-list" id="discList"></div>
+    </section>
+
+    <!-- ============ 06 Studio ============ -->
+    <section class="studio" id="studio">
+      <p class="sec-head"><span class="sec-no">06</span> The studio</p>
+      <div class="studio-grid">
+        <p class="studio-text">N Think brings creative services, technical innovation and digital marketing under one roof. We work as a full-service partner, so the whole brand experience is handled by one team that knows it end to end.</p>
+        <dl class="figures" id="figures"></dl>
+      </div>
+      <article class="director crop">
+        <div class="director-mark" aria-hidden="true">NP</div>
+        <div class="director-body">
+          <h3>Niraj Peiris</h3>
+          <p class="director-role">Managing Director and Head of Creative</p>
+          <p>Over fifteen years in advertising across FMCG, telecommunications, banking, finance and social enterprise. Niraj pairs artistic instinct with strategic thinking, and leads concept development and creative direction for integrated campaigns across print, TV, radio, digital and outdoor.</p>
+          <ul class="tags"><li>FMCG and telco</li><li>360° integrated</li><li>Strategic instinct</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ 07 Contact ============ -->
+    <section class="contact" id="contact">
+      <p class="sec-head"><span class="sec-no">07</span> Contact</p>
+      <h2 class="contact-title">Let's create.</h2>
+      <div class="contact-grid">
+        <ul class="contact-lines">
+          <li><span>Studio</span><a href="mailto:info@nthink.lk">info@nthink.lk</a></li>
+          <li><span>Managing Director</span><a href="mailto:niraj@nthink.lk">niraj@nthink.lk</a></li>
+          <li><span>Phone</span><a href="tel:+94765376180">+94 76 537 6180</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/94765376180" target="_blank" rel="noopener">Message us on WhatsApp</a></li>
+          <li><span>Address</span><address>Colombo, Sri Lanka</address></li>
+        </ul>
+
+        <!-- Static site: the form writes an email in the visitor's mail app. Swap for Supabase later. -->
+        <form class="form" id="contactForm" novalidate>
+          <label>Your name<input name="name" autocomplete="name" required></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Company<input name="company" autocomplete="organization"></label>
+          <label>What do you need?<textarea name="message" rows="5" required></textarea></label>
+          <p class="form-error" id="formError" role="alert" hidden></p>
+          <button class="btn" type="submit">Write the email</button>
+          <p class="form-note">This opens your email app with the message ready to send to info@nthink.lk.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="footer">
+    <div class="footer-big" aria-hidden="true">N Think</div>
+    <div class="footer-row">
+      <nav aria-label="Footer"><a href="#work">Work</a><a href="#disciplines">Disciplines</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+      <p>Colombo, Sri Lanka</p>
+      <p>Made to be remembered.</p>
+      <p>© <span id="year">2026</span> N Think</p>
+      <a href="#hero" class="to-top">Back to top</a>
+    </div>
+  </footer>
+
+  <!-- ============ Project viewer (lightbox) ============ -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+    <div class="viewer-bar">
+      <div><p class="viewer-client" id="viewerClient"></p><h2 id="viewerTitle"></h2></div>
+      <p class="viewer-count" id="viewerCount"></p>
+      <button class="viewer-close" type="button" aria-label="Close viewer">Close</button>
+    </div>
+    <div class="viewer-stage" id="viewerStage"></div>
+    <button class="viewer-nav prev" type="button" aria-label="Previous image">‹</button>
+    <button class="viewer-nav next" type="button" aria-label="Next image">›</button>
+    <div class="viewer-thumbs" id="viewerThumbs"></div>
+  </div>
+
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
