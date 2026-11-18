@@ -179,8 +179,8 @@
   $('#logoCount').textContent = pad2(LOGOS.length) + ' marks';
 
   /* ---------- Selected work: masonry grid of stills ---------- */
-  // Films and logos have their own sections, so the grid shows the rest
-  var rest = PROJECTS.filter(function (p) { return !p.featured && p.cat !== 'motion' && p.cat !== 'identity'; });
+  // Films and logos have their own sections; featured work is shown here too so every category is complete
+  var rest = PROJECTS.filter(function (p) { return p.cat !== 'motion' && p.cat !== 'identity'; });
 
   var grid = $('#grid');
   grid.innerHTML = rest.map(function (p) {
@@ -254,6 +254,7 @@
     stage.innerHTML = m.video
       ? '<video src="' + m.video + '" poster="' + m.thumb + '" controls autoplay playsinline preload="auto"></video>'
       : '<img src="' + m.src + '" alt="' + esc(current.client + ', ' + current.title + ', image ' + (idx + 1)) + '">';
+    if (m.cap) stage.insertAdjacentHTML('beforeend', '<p class="viewer-cap">' + esc(m.cap) + '</p>'); // optional caption, e.g. product → recipe
     var film = $('video', stage); if (film) watchStalls(film);
     $('#viewerCount').textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
     $$('button', thumbs).forEach(function (b, j) { b.setAttribute('aria-current', String(j === idx)); });

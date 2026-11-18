@@ -342,6 +342,8 @@ a.ccard:hover { border-color: var(--accent); transform: translateY(-2px); }
 /* The image fills the stage box and scales down to fit, never past the thumbnails */
 .viewer-stage img, .viewer-stage video { position: absolute; top: 20px; left: var(--pad); width: calc(100% - 2 * var(--pad)); height: calc(100% - 40px); object-fit: contain; animation: stageIn .4s var(--ease); }
 @keyframes stageIn { from { opacity: 0; transform: translateX(var(--from, 0)); } }
+/* Optional caption in the viewer (set cap: on a media item in content.js) */
+.viewer-cap { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; z-index: 1; margin: 0; max-width: calc(100% - 2 * var(--pad)); padding: 8px 16px; border-radius: 999px; background: rgba(12, 12, 14, .82); font-size: 12px; letter-spacing: .08em; text-align: center; }
 .viewer-nav { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; width: 50px; height: 50px; border-radius: 50%; border: 1px solid #333; background: rgba(12, 12, 14, .7); cursor: pointer; font-size: 18px; }
 .viewer-nav:hover { background: #FF3B3B; color: #0C0C0E; border-color: #FF3B3B; }
 .viewer-nav.prev { left: 16px; } .viewer-nav.next { right: 16px; }

@@ -91,8 +91,8 @@ window.DISCIPLINES = [
 window.TEAM = [
   { name: "Dishen", role: "Live streaming and video production", img: "assets/team/dishen.webp" },
   { name: "Alaric", role: "IT and digital", img: "assets/team/it.webp" },
-  { name: "", role: "Interior design", img: "assets/team/interior.webp" },
-  { name: "", role: "Marketing", img: "assets/team/team-4.webp" },
+  { name: "Ravidu", role: "Interior design", img: "assets/team/interior.webp" },
+  { name: "Malsha", role: "Marketing", img: "assets/team/team-4.webp" },
 ];
 
 // Logos section: brand marks N Think designed (img: trimmed logo; index: its image in the 'identities' project viewer)
@@ -129,9 +129,13 @@ window.CATEGORIES = {
   promo: "Promotional",
   outdoor: "Outdoor",
   print: "Print and editorial",
+  photo: "Product shoot",
+  calendar: "Calendars",
+  recipes: "Products & recipes",
   pack: "Packaging",
   identity: "Brand identity",
   interior: "Interior",
+  stall: "Stall",
   event: "Events and exhibitions",
   social: "Social",
   motion: "Motion",
@@ -183,11 +187,11 @@ window.PROJECTS = [
   {
     id: "np-stall",
     featured: true,
-    cat: "event",
+    cat: "stall",
     client: "Nestlé Professional",
     title: "Exhibition stall, 2025",
     text: "A trade stall designed in 3D: warm timber, lit signage and shelving built to show the full range.",
-    media: imgs("np-stall", Array(10).fill([1401, 934])),
+    media: imgs("np-stall", [...Array(10).fill([1401, 934]), [1600, 1067]]), // 11 = front view
   },
   {
     id: "maggi-pro-posm",
@@ -270,6 +274,15 @@ window.PROJECTS = [
       [1368, 1600],
       [1368, 1600],
     ]),
+  },
+  // Stall drawings: FRONT ELEVATION, SIDE ELEVATION and PLAN pdfs from Work file\\Stall
+  {
+    id: "np-stall-drawings",
+    cat: "stall",
+    client: "Nestlé Professional",
+    title: "Stall design drawings",
+    text: "A rounded \u201cMaking More Possible\u201d stall taken from 3D to build: front and side elevations and a floor plan, with dimensions, details and the matching renders.",
+    media: imgs("np-stall-drawings", Array(3).fill([1600, 1131])),
   },
   // Nestlé Distribution Center office: 10 renders, a floor plan and a furniture drawing from the design pack
   {
@@ -354,14 +367,6 @@ window.PROJECTS = [
     media: imgs("hiru-fleet", [[1600, 776]]),
   },
   {
-    id: "nestle-planner",
-    cat: "print",
-    client: "Nestlé Lanka",
-    title: "2026 planner",
-    text: "A year planner with food photography for every month.",
-    media: imgs("nestle-planner", Array(7).fill([980, 1448])),
-  },
-  {
     id: "rushi-salt",
     cat: "pack",
     client: "Rushi Salt",
@@ -424,6 +429,64 @@ window.PROJECTS = [
     title: "Discover Sri Lanka",
     text: "Social key visual for a Sri Lankan tour operator.",
     media: imgs("jr-ceylon", [[1024, 1024]]),
+  },
+
+  // Product shoot: food photography (from Desktop\\Product shoot, made with make_work.py)
+  {
+    id: "np-food-shoot",
+    cat: "photo",
+    client: "Nestlé Professional",
+    title: "Food photography",
+    text: "Fourteen dishes styled and shot for Nestlé Professional: soups, pastas, grills, sandwiches and desserts, lit clean on marble and slate.",
+    media: imgs("np-food-shoot", [
+      ...Array(10).fill([1600, 1066]),
+      ...Array(4).fill([1066, 1600]),
+    ]),
+  },
+  {
+    id: "maggi-food-shoot",
+    cat: "photo",
+    client: "MAGGI",
+    title: "Seasoning food shoot",
+    text: "A packshot of MAGGI Seasoning with the dishes it goes into: noodles, stir-fries, prawns and greens, each styled with fresh ingredients.",
+    media: imgs("maggi-food-shoot", Array(8).fill([1600, 1067])),
+  },
+  // Tamil stickers: six panels cut from Tamil.png
+  {
+    id: "nestle-tamil-stickers",
+    cat: "photo",
+    client: "Nestlé",
+    title: "Tamil beverage stickers",
+    text: "Six Tamil-language stickers pairing NESCAFÉ, NESTEA, MILO and Nestomalt with tea-time bakes, under one line: a warm invitation to the food moments you love.",
+    media: imgs("nestle-tamil-stickers", Array(6).fill([1080, 540])),
+  },
+
+  // Calendars: from Work file\\Printing (desk: photo page then date page for each month)
+  {
+    id: "np-desk-calendar",
+    cat: "calendar",
+    client: "Nestlé Professional",
+    title: "2025 desk calendar",
+    text: "A flip desk calendar: a styled food or beverage shot on one side, the month on the other, with a featured product and the Nestlé brand family on every page.",
+    media: imgs("np-desk-calendar", Array(12).fill([1600, 1309])),
+  },
+  {
+    id: "np-wall-calendar",
+    cat: "calendar",
+    client: "Nestlé Professional",
+    title: "2026 wall calendar",
+    text: "A 17 × 22 in wall calendar, three months to a sheet, each opening with a hero image of the range, from the 120-year illustration to a MAGGI truffle pizza.",
+    media: imgs("np-wall-calendar", Array(4).fill([1236, 1600])),
+  },
+
+  // Almarai Ramadan campaign: film only (Desktop\\New folder\\Almarai Campaign 2025.mp4, compressed to 720p)
+  {
+    id: "almarai-ramadan",
+    cat: "motion",
+    client: "Almarai",
+    title: "Ramadan campaign journey, 2025",
+    text: "A film tracing Almarai's 2025 Ramadan campaign across the region, from desert caravans to Dubai, Delhi and Kuwait City.",
+    media: [film("almarai", L[0], L[1])],
   },
 
   // Films (category: motion)
@@ -510,3 +573,33 @@ window.PROJECTS = [
     media: [film("logo-reveal", L[0], L[1])],
   },
 ];
+
+/* ---------- "Products & recipes" tiles (pages from the Nestlé Professional 2026 year planner) ----------
+   PLANNER: the planner pages in assets/work/nestle-planner (01.webp ...); 01 is also the Illustration service picture.
+   PAIRS: [product name, recipe name, image number of the product page]; the recipe is the next image. */
+var PLANNER = imgs("nestle-planner", Array(22).fill([1083, 1600]));
+var PAIRS = [
+  ["MAGGI Coconut Milk Powder", "Milk rice", 3],
+  ["NESCAFÉ Classic", "Tiramisu cake", 5],
+  ["MAGGI Liquid Seasoning", "Mongolian rice", 7],
+  ["MILO", "MILO Dinosaur", 9],
+  ["Nestlé Milkmaid", "Butter cake", 11],
+  ["MAGGI Truffle Seasoning Powder", "Truffle black cod fillet", 15],
+  ["MAGGI Curry Mix", "Bun filling", 17],
+  ["MAGGI Cheese Powder Mix", "Spaghetti carbonara", 19],
+  ["MAGGI Chicken Seasoning Powder", "Chicken kottu", 21],
+];
+// Each pair becomes its own gallery tile: product page, then the recipe page
+PAIRS.forEach(function (r) {
+  window.PROJECTS.push({
+    id: "recipe-" + r[1].toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    cat: "recipes",
+    client: r[0],
+    title: r[1],
+    text: r[1] + " made with " + r[0] + ", from the Nestlé Professional 2026 year planner.",
+    media: [
+      Object.assign({}, PLANNER[r[2] - 1], { cap: r[0] }),
+      Object.assign({}, PLANNER[r[2]], { cap: "Recipe: " + r[1] }),
+    ],
+  });
+});
