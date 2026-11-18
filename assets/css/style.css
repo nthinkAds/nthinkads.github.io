@@ -94,8 +94,16 @@ em.serif { font-family: var(--serif); font-style: italic; font-weight: 400; font
 .pill { background: rgba(12, 12, 14, .5); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(242, 240, 235, .12); border-radius: 999px; color: #F2F0EB; }
 /* After the hero, pills match the page theme */
 .nav.past .pill { background: color-mix(in srgb, var(--bg) 70%, transparent); border-color: var(--line); color: var(--fg); }
-.nav-logo { justify-self: start; display: inline-flex; align-items: baseline; gap: .12em; padding: 10px 20px; text-decoration: none; font-family: var(--display); font-size: 20px; letter-spacing: -.02em; line-height: 1; }
-.nav-logo img { display: block; height: 18px; width: auto; }   /* red N THINK wordmark */
+.nav-logo { justify-self: start; display: inline-flex; align-items: center; gap: .12em; padding: 10px 20px; text-decoration: none; font-family: var(--display); font-size: 20px; letter-spacing: -.02em; line-height: 1; }
+.nav-logo { gap: 12px; padding: 7px 20px 7px 16px; }
+.nav-logo img { display: block; width: auto; }
+.nav-word { height: 16px; }                                   /* red N THINK wordmark */
+.nav-script { height: 30px; }                                 /* handwritten "think beyond" logo */
+.nav-divider { width: 1px; height: 20px; background: currentColor; opacity: .3; }
+/* Over the hero the pill is dark, so use the cream logo; on light pills (light theme, past the hero) use the ink one */
+.nav-logo .nav-script-ink { display: none; }
+[data-theme="light"] .nav.past .nav-script-ink { display: block; }
+[data-theme="light"] .nav.past .nav-script-cream { display: none; }
 .logo-n { font-weight: 800; color: var(--accent); }
 .logo-think { font-weight: 600; }
 .nav-clock { justify-self: center; padding: 11px 20px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .85; white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -300,8 +308,11 @@ a.ccard:hover { border-color: var(--accent); transform: translateY(-2px); }
 
 .footer { margin-top: clamp(80px, 10vw, 130px); padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); }
 .footer-cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: clamp(32px, 6vw, 96px); padding-bottom: clamp(40px, 6vw, 80px); }
-.logo-big { display: inline-block; text-decoration: none; }
-.logo-big img { display: block; width: clamp(180px, 20vw, 250px); height: auto; }
+.logo-big { display: inline-flex; align-items: center; gap: clamp(16px, 2vw, 26px); text-decoration: none; color: var(--fg); }
+.logo-big .logo-ink, .logo-big .logo-cream { display: block; width: clamp(160px, 18vw, 230px); height: auto; }
+/* Thin line and the N THINK wordmark beside the script logo */
+.logo-divider { align-self: stretch; width: 1px; margin: 10px 0; background: currentColor; opacity: .25; }
+.logo-word { display: block; width: clamp(110px, 12vw, 160px); height: auto; }
 /* Show the dark-ink logo on light backgrounds and the cream one on dark */
 .logo-cream { display: none !important; }
 [data-theme="dark"] .logo-ink { display: none !important; }
