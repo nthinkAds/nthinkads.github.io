@@ -306,5 +306,38 @@
     location.href = 'mailto:info@nthink.lk?subject=' + encodeURIComponent('New project enquiry from ' + name) + '&body=' + encodeURIComponent(body);
   });
 
+  /* ---------- Custom cursor: registration mark that tilts as it moves, red bubble over the work ---------- */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {   // real mouse only; phones keep normal touch
+    var cur = $('.cursor'), mark = $('.cursor-mark'), bubble = $('.cursor-bubble'), label = $('.cursor-label');
+    root.classList.add('has-cursor');
+    var mx = -100, my = -100, fx = mx, fy = my, tilt = 0, lastX = mx;
+    addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; cur.classList.remove('is-away'); }, { passive: true });
+    (function loop() {
+      // the mark tilts a little in the direction of travel, then settles back
+      var vx = mx - lastX; lastX = mx;
+      tilt += ((reduceMotion ? 0 : Math.max(-25, Math.min(25, vx * 1.5))) - tilt) * 0.15;
+      mark.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0) rotate(' + tilt.toFixed(1) + 'deg)';
+      // the bubble follows with a soft lag
+      var k = reduceMotion ? 1 : 0.25;
+      fx += (mx - fx) * k; fy += (my - fy) * k;
+      bubble.style.transform = 'translate3d(' + fx + 'px,' + fy + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
+    // Pick the cursor style from what's under the mouse
+    document.addEventListener('mouseover', function (e) {
+      var t = e.target;
+      var work = t.closest('.fcard, .tile');
+      var text = t.closest('input, textarea, select');
+      var link = t.closest('a, button, .chip, label');
+      cur.classList.toggle('is-text', !!text);
+      cur.classList.toggle('is-label', !!work && !text);
+      cur.classList.toggle('is-link', !work && !text && !!link);
+      if (work) label.textContent = work.querySelector('.tile-play') ? 'Play' : 'View';
+    });
+    addEventListener('mousedown', function () { cur.classList.add('is-down'); });
+    addEventListener('mouseup', function () { cur.classList.remove('is-down'); });
+    document.addEventListener('mouseleave', function () { cur.classList.add('is-away'); });
+  }
+
   $('#year').textContent = new Date().getFullYear();
 })();

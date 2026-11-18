@@ -319,6 +319,36 @@ a.ccard:hover { border-color: var(--accent); transform: translateY(-2px); }
 .viewer-thumbs img { height: 100%; width: auto; }
 body.locked { overflow: hidden; }
 
+/* ---------- Custom cursor: printer's registration mark (only when main.js adds .has-cursor) ---------- */
+.cursor { display: none; }
+.has-cursor .cursor { display: block; }
+.has-cursor, .has-cursor * { cursor: none !important; }
+.has-cursor input, .has-cursor textarea, .has-cursor select { cursor: text !important; }   /* normal typing cursor in forms */
+.cursor-mark, .cursor-bubble { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; will-change: transform; }
+/* The mark: crosshair in a circle. White + "difference" makes it invert, so it shows on dark and light areas */
+.cursor-mark { margin: -20px 0 0 -20px; color: #fff; mix-blend-mode: difference; transition: opacity .2s; }
+.cursor-mark > * { transform-origin: 20px 20px; transition: transform .45s var(--ease), stroke .3s, fill .3s; }
+.cursor-mark .cm-core { transition: transform .3s var(--ease); }
+/* Over links and buttons: turns red and rotates into an x */
+.cursor.is-link .cursor-mark { color: var(--accent); mix-blend-mode: normal; }
+.cursor.is-link .cursor-mark > * { transform: rotate(45deg) scale(1.15); }
+.cursor.is-link .cursor-mark .cm-core { transform: scale(0); }
+/* Over projects and films: a solid red bubble grows around the pointer with "View" or "Play" */
+.cursor-bubble { width: 0; height: 0; }
+.cursor-bubble::before { content: ''; position: absolute; left: -44px; top: -44px; width: 88px; height: 88px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3); transform: scale(0); transition: transform .45s var(--ease); }
+.cursor-label { position: absolute; left: 0; top: 0; translate: -50% -50%; color: var(--on-accent); font: 700 11px/1 var(--body); letter-spacing: .16em; text-transform: uppercase;
+  white-space: nowrap; opacity: 0; transform: scale(.6); transition: opacity .2s, transform .4s var(--ease); }
+.cursor.is-label .cursor-bubble::before { transform: scale(1); }
+.cursor.is-label .cursor-label { opacity: 1; transform: none; transition-delay: .08s; }
+.cursor.is-label .cursor-mark { opacity: 0; }   /* the mark tucks away inside the bubble */
+/* Click: a quick "stamp" */
+.cursor.is-down .cursor-mark > * { transform: scale(.7); }
+.cursor.is-down.is-link .cursor-mark > * { transform: rotate(45deg) scale(.85); }
+.cursor.is-label.is-down .cursor-bubble::before { transform: scale(.86); }
+/* Hidden in forms and when the mouse leaves the window */
+.cursor.is-text .cursor-mark, .cursor.is-text .cursor-bubble, .cursor.is-away .cursor-mark, .cursor.is-away .cursor-bubble { opacity: 0; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
   .nav-clock { display: none; }
