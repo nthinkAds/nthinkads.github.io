@@ -90,7 +90,7 @@ window.DISCIPLINES = [
 // Team row in the Studio section. Leave name empty ('') to show the role only.
 window.TEAM = [
   { name: "Dishen", role: "Live streaming and video production", img: "assets/team/dishen.webp" },
-  { name: "", role: "IT and digital", img: "assets/team/it.webp" },
+  { name: "Alaric", role: "IT and digital", img: "assets/team/it.webp" },
   { name: "", role: "Interior design", img: "assets/team/interior.webp" },
   { name: "", role: "Marketing", img: "assets/team/team-4.webp" },
 ];
@@ -340,12 +340,18 @@ window.PROJECTS = [
     id: "hiru-foods",
     cat: "outdoor",
     client: "Hiru",
-    title: "Hoarding and fleet branding",
-    text: "Roadside hoarding, installed, and a branded delivery fleet.",
-    media: imgs("hiru-foods", [
-      [1600, 1178],
-      [1600, 776],
-    ]),
+    title: "Roadside hoarding",
+    text: "A roadside hoarding for Hiru Foods, shown as artwork and installed on site.",
+    media: imgs("hiru-foods", [[1600, 1178]]),
+  },
+  // Hiru lorries: split out of the hoarding project so they get their own tile
+  {
+    id: "hiru-fleet",
+    cat: "outdoor",
+    client: "Hiru",
+    title: "Fleet branding",
+    text: "Delivery lorries wrapped in Hiru Foods branding: both sides, the back and the panel artwork.",
+    media: imgs("hiru-fleet", [[1600, 776]]),
   },
   {
     id: "nestle-planner",
