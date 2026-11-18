@@ -303,7 +303,7 @@
     err.hidden = !problem; err.textContent = problem;
     if (problem) return;
     var body = msg + '\n\n— ' + name + (f.company.value.trim() ? ', ' + f.company.value.trim() : '') + '\n' + email;
-    location.href = 'mailto:info@nthink.lk?subject=' + encodeURIComponent('New project enquiry from ' + name) + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:nthink925@gmail.com?subject=' + encodeURIComponent('New project enquiry from ' + name) + '&body=' + encodeURIComponent(body);
   });
 
   /* ---------- Custom cursor: red dot + trailing ring, "View"/"Play" bubble over the work ---------- */
