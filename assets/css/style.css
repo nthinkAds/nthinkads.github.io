@@ -63,7 +63,7 @@ button { font: inherit; color: inherit; }
 
 /* Every headline uses Archivo slightly widened, which gives N Think its own look */
 .hero-head, .sec-title, .statement, .fcard-title, .scard h3, .tile-title, .about-state, .stats dt,
-.leader h3, .contact-head, .mobile-menu a, .marquee-track span, .viewer-bar h2 { font-stretch: 112%; }
+.leader h3, .contact-head, .mobile-menu a, .viewer-bar h2 { font-stretch: 112%; }
 .nav-logo, .logo-big, .leader-mark { font-stretch: 105%; }
 
 /* Italic serif accent word inside headlines */
@@ -160,9 +160,10 @@ em.serif { font-family: var(--serif); font-style: italic; font-weight: 400; font
 .marquee { overflow: hidden; white-space: nowrap; padding: 22px 0; border-block: 1px solid var(--line); background: var(--bg); }
 .marquee-track { display: inline-flex; align-items: center; animation: marquee 44s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
-.marquee-track span { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(18px, 2.2vw, 30px); letter-spacing: -.01em; color: var(--muted); transition: color .3s; }
-.marquee-track span:hover { color: var(--fg); }
-.marquee-track i { font-style: normal; color: var(--accent); padding: 0 clamp(18px, 2.6vw, 38px); font-size: .9em; }
+.marquee-track { gap: 14px; padding-right: 14px; }   /* the right padding keeps the gap even where the loop joins */
+/* White card behind every logo, so brand colours stay true in both themes */
+.client { flex: 0 0 auto; display: grid; place-items: center; width: 200px; height: 84px; padding: 0 22px; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
+.client img { max-height: 62px; width: auto; max-width: 100%; object-fit: contain; }   /* every card the same size; logo fits inside */
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Manifesto ---------- */
@@ -391,6 +392,8 @@ body.locked { overflow: hidden; }
   .scard h3 { margin-top: 16px; }
   .masonry { columns: 2; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .client { width: 150px; height: 66px; padding: 0 16px; }
+  .client img { max-height: 48px; }
   #films .h-head { flex-direction: column; align-items: flex-start; gap: 0; }   /* heading above the note on phones */
   .film-media { height: clamp(240px, 46vh, 400px); }
   .about-grid, .contact-grid, .leader, .footer-cols { grid-template-columns: 1fr; }

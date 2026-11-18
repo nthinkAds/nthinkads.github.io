@@ -83,9 +83,12 @@
   /* ---------- Hero: the page-load sequence ---------- */
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('loaded'); }); });
 
-  /* ---------- Client marquee: names separated by ✦, doubled for a seamless loop ---------- */
-  var names = CLIENTS.map(function (n) { return '<span>' + esc(n) + '</span><i aria-hidden="true">✦</i>'; }).join('');
-  $('#clientTrack').innerHTML = names + '<span aria-hidden="true" style="display:contents">' + names + '</span>';
+  /* ---------- Client marquee: each logo on a white card, doubled for a seamless loop ---------- */
+  var logos = CLIENTS.map(function (c) {
+    return '<span class="client"><img src="assets/clients/' + c[1] + '.webp" alt="' + esc(c[0]) + '" loading="lazy"></span>';
+  }).join('');
+  // The second copy is hidden from screen readers so each brand is only read out once
+  $('#clientTrack').innerHTML = logos + '<span aria-hidden="true" style="display:contents">' + logos.replace(/alt="[^"]*"/g, 'alt=""') + '</span>';
 
   /* ---------- Manifesto: words light up as it scrolls past (keeps the italic accent) ---------- */
   var st = $('#manifestoText');

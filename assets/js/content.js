@@ -4,11 +4,12 @@
    No build step: save, refresh the page, done.
    ===================================================================== */
 
-// Client strip: the 14 brands listed on nthink.lk
+// Client strip: the 14 brands listed on nthink.lk (name is the alt text; logo is in assets/clients)
 window.CLIENTS = [
-  'Nestlé Professional', 'NESCAFÉ', 'Maliban', 'Nestomalt', 'MAGGI Professional',
-  'Milkmaid', 'Kevilton', 'Wise Freight Logistics', 'Almarai', 'Samrin Tea',
-  'Pepper Cube', 'Hiru', 'PLL', 'Nestlé Heritage'
+  ['Nestlé Professional', 'nestle-professional'], ['NESCAFÉ', 'nescafe'], ['Maliban', 'maliban'], ['Nestomalt', 'nestomalt'],
+  ['MAGGI Professional', 'maggi-professional'], ['Milkmaid', 'milkmaid'], ['Kevilton', 'kevilton'],
+  ['Wise Freight Logistics', 'wise-freight'], ['Almarai', 'almarai'], ['Samrin Tea', 'samrin'],
+  ['Pepper Cube', 'pepper-cube'], ['Hiru', 'hiru'], ['PLL', 'pll'], ['Nestlé', 'nestle']
 ];
 
 // Key figures for the Studio section (value + what it means)
